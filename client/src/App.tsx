@@ -1,12 +1,12 @@
-import React from 'react';
-import './App.css';
+import React, { useState } from 'react';
+import LogIn from './components/LogIn';
+import Chat from './components/Chat';
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState<boolean>(false);
   return (
-    <div className="App">
-      <header className="App-header">
-        hello world
-      </header>
+    <div>
+      { loggedIn? <Chat /> : <LogIn setLoggedIn={setLoggedIn}/> }
     </div>
   );
 }
