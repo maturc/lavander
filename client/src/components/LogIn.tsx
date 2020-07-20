@@ -18,11 +18,12 @@ function LogIn(props: any) {
       email: email,
       password: password
     });
-    console.log(body);
     fetchLogin("/users/login", body)
       .then((data)=> {
         console.log(data);
-        props.setLoggedIn(true);
+        if(data) {
+          props.setLoggedIn(true);
+        }
       });
   }
   return(

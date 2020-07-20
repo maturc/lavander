@@ -45,11 +45,13 @@ router.route('/login').post( async (req: Request, res: Response) => {
     if(await bcrypt.compare(req.body.password, user[0].password)) {
       res.json(user[0]);
       //res.status(202).send('Success');
+      //HOW TO HANDLE STATUS MSGS; CAN I READ THEM AND REACT TO THEM??
     } else {
       res.status(403).send("Not Allowed");
     }
   } catch {
-    res.status(500).send();
+    res.status(403).send("Not Allowed");
+    //res.status(500).send();
   }
 });
 

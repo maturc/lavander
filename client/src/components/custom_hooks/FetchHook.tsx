@@ -1,19 +1,18 @@
-import { ErrorInfo } from "react";
-
 export default async function fetchLogin( route: string = "/users/login", body: string = "" ): Promise<any> {
   try {
-    let method: string = "get";
-    if ( body !== "" ) method = "post";
-    debugger;
+    let method: string = "GET";
+    if ( body !== "" ) method = "POST";
     const response = await fetch(`http://localhost:5000${route}`, {
       method: method,
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
       body: body
-    })
-    debugger;
+    });
     const data = await response.json();
-    console.log(data);
     return data;
   } catch(e) {
-    console.log(e);
+    console.log("Authentication error.")
   }
 }
