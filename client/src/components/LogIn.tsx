@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TextField, Button, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import fetchLogin from './custom_hooks/FetchHook';
+import fetchInterface from './custom_hooks/fetchInterface';
 
 const useStyles = makeStyles({
   gridHeight: {
@@ -18,11 +18,12 @@ function LogIn(props: any) {
       email: email,
       password: password
     });
-    fetchLogin("/users/login", body)
+    fetchInterface("/users/login", "post", body)
       .then((data)=> {
         console.log(data);
         if(data) {
           props.setLoggedIn(true);
+          props.setUser(data);
         }
       });
   }

@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Grid } from '@material-ui/core';
+import ChannelList from './sidebar/ChannelList';
 
-function Chat() {
+function Chat(props: any) {
+
   return (
   <Grid container direction="row">
     <Grid item xs={12} sm={4} container direction="column">
@@ -9,7 +11,7 @@ function Chat() {
       Sidebar header
     </Grid>
     <Grid item>
-      Channels
+      <ChannelList user={props.user} />
     </Grid>
     <Grid item>
       Invite

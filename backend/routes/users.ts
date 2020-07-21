@@ -4,27 +4,17 @@ import * as database from '../db/databaseInterface';
 
 const router = express.Router();
 
-router.route('/').get( async (req: Request, res: Response) => {
-  try {
-    const results = await database.findAll("users");
-    console.log(results)
-    res.json(results);
-  } catch(err) {
-    console.log(err);
-    res.sendStatus(500);
-  }
-});
-
+//get USER by ID
 router.route('/:id').get( async (req: Request, res: Response) => {
   try {
-    const results = await database.findById("users", { id_user: req.params.id }, "username");
-    console.log(results)
+    const results = await database.find("username", "users", { id_user: req.params.id } );
     res.json(results);
   } catch(err) {
     console.log(err);
     res.sendStatus(500);
   }
 });
+//signup a new USER
 router.route('/signup').post( async (req: Request, res: Response) => {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
@@ -36,16 +26,18 @@ router.route('/signup').post( async (req: Request, res: Response) => {
     res.status(500).send();
   }
 });
+//login a USER
 router.route('/login').post( async (req: Request, res: Response) => {
-  const user: any = await database.findByEmail(req.body.email);//type
+  let user: any = await database.find("*", "users", { email: req.body.email});
+  user = user[0];
   if (user === null) {
     return res.status(400).send("Cannot find user.");
   }
   try {
-    if(await bcrypt.compare(req.body.password, user[0].password)) {
-      res.json(user[0]);
+    if(await bcrypt.compare(req.body.password, user.password)) {
+      const response = { id_user: user.id_user, username: user.username };
+      res.json(response);
       //res.status(202).send('Success');
-      //HOW TO HANDLE STATUS MSGS; CAN I READ THEM AND REACT TO THEM??
     } else {
       res.status(403).send("Not Allowed");
     }
