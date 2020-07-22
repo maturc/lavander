@@ -7,7 +7,6 @@ const router = express.Router();
 router.route('/:id').get( async (req: Request, res: Response) => {
   try {
     const results = await database.getChannels(req.params.id);
-    console.log(results);
     res.json(results);
   } catch(err) {
     console.log(err);

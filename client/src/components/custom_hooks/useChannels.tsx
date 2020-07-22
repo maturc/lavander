@@ -6,10 +6,11 @@ export default function useChannels(user: Iuser) {
   useEffect( () => {
     fetchInterface(`/channels/${user.id_user}`, "get")
       .then((data)=> {
-        console.log(data);
+        debugger
         setChannels(data);
       });
     }, [user]);
+  console.log(channels)
   return channels;
 }
 

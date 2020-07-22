@@ -22,7 +22,6 @@ function LogIn(props: any) {
       .then((data)=> {
         console.log(data);
         if(data) {
-          props.setLoggedIn(true);
           props.setUser(data);
         }
       });

@@ -1,5 +1,6 @@
-export default async function fetchInterface( route: string, method: string = "get", body: string = "" ): Promise<any> {
+export default async function fetchInterface( route: string, method: string = "get", body: string | null = null ): Promise<any> {
   try {
+    debugger
     const response = await fetch(`http://localhost:5000${route}`, {
       method: method,
       headers: {
