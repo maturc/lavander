@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Grid } from '@material-ui/core';
 import ChannelList from './sidebar/ChannelList';
 import MessageContainer from './MessageContainer';
+import MessageBox from './MessageBox';
 
 function Chat(props: any) {
   const [activeChannel, setActiveChannel] = useState();
@@ -30,7 +31,7 @@ function Chat(props: any) {
         <MessageContainer activeChannel={activeChannel} />
       </Grid>
       <Grid item>
-        
+        <MessageBox user={props.user} activeChannel={activeChannel}/>
       </Grid>
     </Grid>
   </Grid>
