@@ -35,9 +35,7 @@ export function signUp(user: object) {
     const statement = mysql.format(`INSERT INTO users SET ?`, [user]);
     pool.query(statement, (err, results) => {
       if (err) return reject(err);
-      console.log(results);
-      console.log(results.insertId);
-      return resolve(results);//delet????
+      return resolve(results);
     });
   });
 }
@@ -57,7 +55,31 @@ export function getChannels(id_user: string) {
       ORDER BY c.channel_name`, [id_user]);
     pool.query(statement, (err, results) => {
       if (err) return reject(err);
-
+      return resolve(results);
+    });
+  });
+}
+//get MESSAGES from CHANNEL ID
+export function getMessages(id_channel: string) {
+  return new Promise((resolve, reject) => {
+    const statement = mysql.format(
+      `SELECT u.id_user, u.username, m.message
+      FROM messages AS m
+      INNER JOIN users_public AS u
+      ON m.id_user = u.id_user
+      WHERE m.id_channel = ?`, [id_channel]);
+    pool.query(statement, (err, results) => {
+      if (err) return reject(err);
+      return resolve(results);
+    });
+  });
+}
+//post MESSAGE
+export function postMessage(message: object) {
+  return new Promise((resolve, reject) => {
+    const statement = mysql.format(`INSERT INTO messages SET ?`, [message]);
+    pool.query(statement, (err, results) => {
+      if (err) return reject(err);
       return resolve(results);
     });
   });

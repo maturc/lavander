@@ -4,7 +4,7 @@ import ChannelList from './sidebar/ChannelList';
 import MessageContainer from './MessageContainer';
 
 function Chat(props: any) {
-  const [activeChannel, setActiveChannel] = useState(props.channels[0].id_channel);
+  const [activeChannel, setActiveChannel] = useState();
 
   return (
   <Grid container direction="row">
