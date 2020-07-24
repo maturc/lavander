@@ -59,6 +59,17 @@ export function getChannels(id_user: string) {
     });
   });
 }
+//get all CHANNELS
+export function getAllChannels() {
+  return new Promise((resolve, reject) => {
+    const statement = mysql.format(
+      `SELECT * FROM channels`, []);
+    pool.query(statement, (err, results) => {
+      if (err) return reject(err);
+      return resolve(results);
+    });
+  });
+}
 //get MESSAGES from CHANNEL ID
 export function getMessages(id_channel: string) {
   return new Promise((resolve, reject) => {
