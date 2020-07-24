@@ -32,6 +32,7 @@ function LogIn(props: any) {
         <TextField value={email}    onChange={(e)=>setEmail   (e.target.value)} label="Email address"/>
         <TextField value={password} onChange={(e)=>setPassword(e.target.value)} label="Password" />
         <Button onClick={handleButton}>Log in</Button>
+        <Button onClick={() => props.setSignup(true) }>Create a new account</Button>
       </Grid>
     </Grid>
   );
