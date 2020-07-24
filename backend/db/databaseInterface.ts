@@ -63,7 +63,7 @@ export function getChannels(id_user: string) {
 export function getMessages(id_channel: string) {
   return new Promise((resolve, reject) => {
     const statement = mysql.format(
-      `SELECT u.id_user, u.username, m.message
+      `SELECT u.id_user, u.username, m.message, m.time
       FROM messages AS m
       INNER JOIN users_public AS u
       ON m.id_user = u.id_user

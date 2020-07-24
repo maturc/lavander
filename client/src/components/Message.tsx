@@ -5,6 +5,7 @@ function Message(props: any) {
   return(
     <>
       {message.username}
+      {message.time}
       {message.message}
     </>
   );

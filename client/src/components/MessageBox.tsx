@@ -10,11 +10,18 @@ function MessageBox(props: any) {
       id_channel: props.activeChannel,
       message: message
     });
-    debugger
     fetchInterface(`/channels/messages/new`, "post", body)
       .then((data)=>{
         console.log(data);
       })
+    const socketBody = {
+      id_user: props.user.id_user,
+      username: props.user.username,
+      message: message,
+      time: new Date().toLocaleString()
+    };
+    props.socket.emit("new message", socketBody);
+    setMessage("");
   }
   return(
     <div>
