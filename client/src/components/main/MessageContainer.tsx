@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Message from './Message';
 import uniqid from 'uniqid'
-import fetchInterface from './custom_hooks/fetchInterface';
+import fetchInterface from '../custom_hooks/fetchInterface';
 
 function MessageContainer(props: any) {
   const [messageList, setMessageList] = useState<any>();

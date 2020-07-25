@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { TextField, Button } from '@material-ui/core';
-import fetchInterface from './custom_hooks/fetchInterface';
+import fetchInterface from '../custom_hooks/fetchInterface';
 
-function MessageBox(props: any) {
+function MessageInputBox(props: any) {
   const [message, setMessage] = useState<string>("");
   function handleButton() {
     const body = JSON.stringify({
@@ -47,4 +47,4 @@ function MessageBox(props: any) {
   );
 }
 
-export default MessageBox;
+export default MessageInputBox;

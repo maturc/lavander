@@ -2,7 +2,7 @@ import React from 'react';
 
 function MessageHeader() {
     return(
-        <div></div>
+        <div>HEADER</div>
     );
 }
 
