@@ -1,8 +1,11 @@
 import React from 'react';
+import { Box } from '@material-ui/core';
 
 function SidebarHeader() {
     return(
-        <div></div>
+        <Box m={1}>
+            Header
+        </Box>
     );
 }
 

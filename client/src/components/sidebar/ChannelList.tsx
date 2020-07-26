@@ -1,27 +1,38 @@
 import React, { useEffect, useState } from 'react';
-import useChannels from '../custom_hooks/useChannels';
+import useChannels, { IUser } from '../custom_hooks/useChannels';
+import { List, ListItem } from '@material-ui/core';
 
-function ChannelList(props: any) {
-  const channels: any = useChannels(props.user);
+function ChannelList({ user, activeChannel, setActiveChannel }:IProps) {
+  const channels: any = useChannels(user);
   const [channelList, setChannelList] = useState();
 
   useEffect(()=> {
     setChannelList(channels.map( (channel: any) =>
-      <li key={channel.id_channel} onClick={ () => props.setActiveChannel(channel.id_channel) }>
+      <ListItem
+        button 
+        disableRipple={true}
+        component="a"
+        key={channel.id_channel}
+        onClick={ () => setActiveChannel(channel.id_channel) }
+        selected={ activeChannel === channel.id_channel }
+      >
         {channel.channel_name}
-      </li>
+      </ListItem>
     ));
-    if(channels.length>0) {
-      props.setActiveChannel(channels[0].id_channel);
-    }
-  }, [channels])
+  }, [channels, activeChannel, setActiveChannel]);
   return(
-    <ul>
+    <List>
       { channels.length>0 ? channelList : "loading" }
-    </ul>
+    </List>
   );
 }
 
 export default ChannelList;
 //add spinner on load
 //fix the types !!!!!!
+
+interface IProps {
+  user: IUser,
+  activeChannel: number
+  setActiveChannel: any
+}

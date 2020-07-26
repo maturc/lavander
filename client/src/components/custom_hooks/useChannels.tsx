@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import fetchInterface from './fetchInterface';
 
-export default function useChannels(user: Iuser) {
+export default function useChannels(user: IUser) {
   const [channels, setChannels] = useState<object[]>( [] );
   useEffect( () => {
     //fetchInterface(`/channels/${user.id_user}`, "get")
@@ -13,7 +13,7 @@ export default function useChannels(user: Iuser) {
   return channels;
 }
 
-interface Iuser {
+export interface IUser {
   id_user: string,
   username: string
 }
