@@ -1,8 +1,8 @@
 import React from 'react';
 import ChannelList from './ChannelList';
 import { Grid } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
 import SidebarHeader from './SidebarHeader';
+import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles({
   sidebar: {
