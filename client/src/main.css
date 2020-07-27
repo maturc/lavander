@@ -1,0 +1,17 @@
+.sidebar__list-item {
+  color: #bababa;
+}
+
+.sidebar__list-item:hover {
+  background-color: #6a60e6;
+}
+
+.sidebar__list-item.MuiListItem-root.Mui-selected {
+  color: white;
+  background-color: #6057DA;
+}
+
+.sidebar__list-item.MuiListItem-root.Mui-selected:hover {
+  background-color: #6057DA;
+}
+/*# sourceMappingURL=main.css.map */
