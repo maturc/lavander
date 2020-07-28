@@ -5,13 +5,13 @@ import MessageInputBox from './MessageInputBox';
 
 function MessageArea(props: any) {
   return (
-      <Box m={1} className="message-area">
-          <div>
+      <section className="message-area">
+          <div className="message-area__header">
             Header
           </div>
           <MessageContainer activeChannel={props.activeChannel} socket={props.socket} />
           <MessageInputBox user={props.user} activeChannel={props.activeChannel} socket={props.socket} />
-      </Box>
+      </section>
   );
 }
 

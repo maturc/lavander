@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { TextField, Button } from '@material-ui/core';
+import { TextField, Button, IconButton } from '@material-ui/core';
 import fetchInterface from '../custom_hooks/fetchInterface';
+import SendIcon from '@material-ui/icons/Send';
 
 function MessageInputBox(props: any) {
   const [message, setMessage] = useState<string>("");
@@ -24,25 +25,20 @@ function MessageInputBox(props: any) {
     setMessage("");
   }
   return(
-    <div>
+    <div className="message-area__input">
       <TextField
+        className="message-area__input-tf"
         id="outlined-full-width"
-        label="Label"
-        style={{ margin: 8 }}
-        placeholder="Placeholder"
-        helperText="Full width!"
+        placeholder="Type your message"
         fullWidth
-        margin="normal"
-        InputLabelProps={{
-          shrink: true,
-        }}
+        margin="dense"
         variant="outlined"
         value={message}
         onChange={(e)=>setMessage(e.target.value)}
       />
-      <Button onClick={handleButton} >
-        Post
-      </Button>
+      <IconButton onClick={handleButton} >
+        <SendIcon />
+      </IconButton>
     </div>
   );
 }
