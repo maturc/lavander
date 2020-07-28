@@ -1,9 +1,21 @@
-.sidebar__list-item
-  color: #bababa
-  &:hover
-    background-color: #6a60e6
-  &.MuiListItem-root.Mui-selected
-    color: white
-    background-color: #6057DA
+.sidebar
+  background-color: #736CED
+  color: white
+  font-weight: bold
+  &__list-item
+    color: #bababa
     &:hover
+      background-color: #6a60e6
+    &.MuiListItem-root.Mui-selected
+      color: white
       background-color: #6057DA
+      &:hover
+        background-color: #6057DA
+
+.message-area
+  background-color: #FEF9FF
+  height: 100vh
+  display: grid
+  grid-template-rows: 1fr auto 1fr
+  &__container
+    overflow-y: scroll

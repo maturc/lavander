@@ -2,21 +2,10 @@ import React from 'react';
 import ChannelList from './ChannelList';
 import { Grid } from '@material-ui/core';
 import SidebarHeader from './SidebarHeader';
-import { makeStyles } from '@material-ui/styles';
-
-const useStyles = makeStyles({
-  sidebar: {
-    backgroundColor: "#736CED",
-    color: "white",
-    fontWeight: "bold"
-  }
-});
 
 function Sidebar(props: any) {
-  const classes = useStyles();
-  
   return (
-    <Grid item xs={12} sm={1} container direction="column" className={classes.sidebar}>
+    <Grid item xs={12} sm={1} container direction="column" className="sidebar">
       <Grid item>
         <SidebarHeader />
       </Grid>

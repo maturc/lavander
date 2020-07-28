@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Message from './Message';
 import uniqid from 'uniqid'
 import fetchInterface from '../custom_hooks/fetchInterface';
+import { ListItem, List, Grid } from '@material-ui/core';
 
 function MessageContainer(props: any) {
   const [messageList, setMessageList] = useState<any>();
@@ -12,9 +13,9 @@ function MessageContainer(props: any) {
         console.log(data);
         if(data) {
           setMessageList(data.map( (message: any) =>
-            <li key={uniqid()}>
+            <ListItem key={uniqid()}>
               <Message message={message} />
-            </li>
+            </ListItem>
           ));
         }
       });
@@ -25,9 +26,9 @@ function MessageContainer(props: any) {
       console.log('new message posted:', data);
       setMessageList(
         [ ...messageList,
-          <li key={uniqid()}>
+          <ListItem key={uniqid()}>
             <Message message={data} />
-          </li>
+          </ListItem>
         ]);
     });
 
@@ -35,9 +36,9 @@ function MessageContainer(props: any) {
   }, [messageList]);
 
   return(
-    <ul>
-      {messageList}
-    </ul>
+    <List className="message-area__container">
+        {messageList}
+    </List>
   );
 }
 

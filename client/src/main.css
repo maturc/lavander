@@ -1,3 +1,9 @@
+.sidebar {
+  background-color: #736CED;
+  color: white;
+  font-weight: bold;
+}
+
 .sidebar__list-item {
   color: #bababa;
 }
@@ -13,5 +19,18 @@
 
 .sidebar__list-item.MuiListItem-root.Mui-selected:hover {
   background-color: #6057DA;
+}
+
+.message-area {
+  background-color: #FEF9FF;
+  height: 100vh;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 1fr auto 1fr;
+      grid-template-rows: 1fr auto 1fr;
+}
+
+.message-area__container {
+  overflow-y: scroll;
 }
 /*# sourceMappingURL=main.css.map */
