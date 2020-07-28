@@ -41,6 +41,7 @@
   overflow-y: scroll;
   min-height: 80vh;
   padding-bottom: 0;
+  scrollbar-width: thin;
 }
 
 .message-area__input {

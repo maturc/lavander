@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef, RefObject } from 'react';
 import Message from './Message';
 import uniqid from 'uniqid'
 import fetchInterface from '../custom_hooks/fetchInterface';
-import { ListItem, List, Grid } from '@material-ui/core';
+import { ListItem, List } from '@material-ui/core';
+
 
 function MessageContainer(props: any) {
   const [messageList, setMessageList] = useState<any>();
+
+  const messagesEnd: RefObject<any> = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     fetchInterface(`/channels/messages/${props.activeChannel}`, "get")
@@ -17,10 +20,10 @@ function MessageContainer(props: any) {
               <Message message={message} />
             </ListItem>
           ));
+          messagesEnd.current.scrollIntoView({ behavior: "auto" });
         }
       });
   }, [props.activeChannel]);
-
   useEffect(() => {
     props.socket.on('new message', (data: any) => {
       console.log('new message posted:', data);
@@ -31,13 +34,15 @@ function MessageContainer(props: any) {
           </ListItem>
         ]);
     });
-
+    messagesEnd.current.scrollIntoView({ behavior: "smooth" });
     return ()=> props.socket.off('new message');
   }, [messageList]);
 
   return(
     <List className="message-area__container">
         {messageList}
+        <div ref={messagesEnd}>
+        </div>
     </List>
   );
 }
