@@ -8,7 +8,7 @@ function MessageInputBox(props: any) {
   function handleButton() {
     const body = JSON.stringify({
       id_user: props.user.id_user,
-      id_channel: props.activeChannel,
+      id_channel: props.activeChannel.id_channel,
       message: message
     });
     fetchInterface(`/channels/messages/new`, "post", body)
@@ -19,7 +19,7 @@ function MessageInputBox(props: any) {
       id_user: props.user.id_user,
       username: props.user.username,
       message: message,
-      time: new Date().toLocaleString()
+      time: new Date().toLocaleString('en-GB')
     };
     props.socket.emit("new message", socketBody);
     setMessage("");
