@@ -78,7 +78,8 @@ export function getMessages(id_channel: string) {
       FROM messages AS m
       INNER JOIN users_public AS u
       ON m.id_user = u.id_user
-      WHERE m.id_channel = ?`, [id_channel]);
+      WHERE m.id_channel = ?
+      ORDER BY m.time`, [id_channel]);
     pool.query(statement, (err, results) => {
       if (err) return reject(err);
       return resolve(results);
