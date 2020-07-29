@@ -35,6 +35,9 @@
 
 .message-area__header {
   padding: 8px;
+  margin: 0;
+  -webkit-box-shadow: 0px 1px 1px 0px #bababa;
+  box-shadow: 0px 1px 1px 0px #bababa;
 }
 
 .message-area__container {
@@ -42,6 +45,41 @@
   min-height: 80vh;
   padding-bottom: 0;
   scrollbar-width: thin;
+}
+
+.message-area__message-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.message-area__message-container > h2 {
+  margin: 0;
+}
+
+.message-area__username {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-right: 4px;
+}
+
+.message-area__timestamp {
+  font-weight: 500;
+  font-size: 0.75rem;
+  color: #747f8d;
+}
+
+.message-area__message {
+  word-wrap: break-word;
+  white-space: break-spaces;
+  font-weight: 500;
+  font-size: 1rem;
 }
 
 .message-area__input {

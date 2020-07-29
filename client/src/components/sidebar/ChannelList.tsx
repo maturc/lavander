@@ -14,8 +14,8 @@ function ChannelList({ user, activeChannel, setActiveChannel }:IProps) {
         className={"sidebar__list-item"}
         component="a"
         key={channel.id_channel}
-        onClick={ () => setActiveChannel(channel.id_channel) }
-        selected={ activeChannel === channel.id_channel }
+        onClick={ () => setActiveChannel({id_channel: channel.id_channel, channel_name: channel.channel_name}) }
+        selected={ activeChannel.id_channel === channel.id_channel }
         >
         {"# "+channel.channel_name}
       </ListItem>
@@ -34,6 +34,9 @@ export default ChannelList;
 
 interface IProps {
   user: IUser,
-  activeChannel: number
+  activeChannel: {
+    id_channel: number,
+    channel_name: string
+  }
   setActiveChannel: any
 }

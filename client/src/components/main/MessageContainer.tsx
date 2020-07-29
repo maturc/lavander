@@ -11,7 +11,7 @@ function MessageContainer(props: any) {
   const messagesEnd: RefObject<any> = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    fetchInterface(`/channels/messages/${props.activeChannel}`, "get")
+    fetchInterface(`/channels/messages/${props.activeChannel.id_channel}`, "get")
       .then( (data)=> {
         console.log(data);
         if(data) {

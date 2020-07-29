@@ -14,7 +14,7 @@ const useStyles = makeStyles({
 function Chat(props: any) {
   const classes = useStyles();
 
-  const [activeChannel, setActiveChannel] = useState(1);
+  const [activeChannel, setActiveChannel] = useState({id_channel: 1, channel_name: "Company"});
   
   return (
   <Grid container direction="row" className={classes.mainContainer}>
