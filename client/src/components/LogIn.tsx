@@ -13,6 +13,8 @@ function LogIn(props: any) {
   
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [isLoginValid, setIsLoginValid] = useState<boolean>(true);
+
   function handleButton() {
     const body = JSON.stringify({
       email: email,
@@ -20,12 +22,16 @@ function LogIn(props: any) {
     });
     fetchInterface("/users/login", "post", body)
       .then((data)=> {
-        console.log(data);
-        if(data) {
-          props.setUser(data);
-        }
-      });
-  }
+          console.log(data);
+          if(data) {
+            props.setUser(data);
+          }
+      })
+      .catch((err: ErrorEvent)=> {
+        setIsLoginValid(false);
+        setTimeout( () => setIsLoginValid(true), 2000);
+      }); 
+  };
   function handleGuestButton() {
     const body = JSON.stringify({
       email: "guest",
@@ -33,7 +39,6 @@ function LogIn(props: any) {
     });
     fetchInterface("/users/login", "post", body)
       .then((data)=> {
-        console.log(data);
         if(data) {
           props.setUser(data);
         }
@@ -42,8 +47,8 @@ function LogIn(props: any) {
   return(
     <Grid container justify="center">
       <Grid className={classes.gridHeight} xs={12} sm={6} container item direction="column" justify="center">
-        <TextField value={email}    onChange={(e)=>setEmail   (e.target.value)} label="Email address"/>
-        <TextField value={password} onChange={(e)=>setPassword(e.target.value)} label="Password" />
+        <TextField value={email}    onChange={(e)=>setEmail   (e.target.value)} label="Email address" error={!isLoginValid} />
+        <TextField value={password} onChange={(e)=>setPassword(e.target.value)} label="Password"      error={!isLoginValid} helperText={ isLoginValid ? "" : "Invalid credentials!" } />
         <Button onClick={handleButton}>Log in</Button>
         <Button onClick={() => props.setSignup(true) }>Create a new account</Button>
         <Button onClick={handleGuestButton}>Log in as GUEST</Button>
