@@ -1,28 +1,38 @@
 import React, { useState } from 'react';
-import { TextField, Button, IconButton } from '@material-ui/core';
+import { TextField, IconButton } from '@material-ui/core';
 import fetchInterface from '../custom_hooks/fetchInterface';
 import SendIcon from '@material-ui/icons/Send';
 
 function MessageInputBox(props: any) {
   const [message, setMessage] = useState<string>("");
+  const [isMessageValid, setIsMessageValid] = useState<boolean>(true);
+
+  const err = `error helperText="Message too long!"`
+
   function handleButton() {
-    const body = JSON.stringify({
-      id_user: props.user.id_user,
-      id_channel: props.activeChannel.id_channel,
-      message: message
-    });
-    fetchInterface(`/channels/messages/new`, "post", body)
-      .then((data)=>{
-        console.log(data);
-      })
-    const socketBody = {
-      id_user: props.user.id_user,
-      username: props.user.username,
-      message: message,
-      time: new Date().toLocaleString('en-GB')
-    };
-    props.socket.emit("new message", socketBody);
-    setMessage("");
+    if (message.length > 0)
+      if (message.length < 201) {
+        const body = JSON.stringify({
+          id_user: props.user.id_user,
+          id_channel: props.activeChannel.id_channel,
+          message: message
+        });
+        fetchInterface(`/channels/messages/new`, "post", body)
+          .then((data)=>{
+            console.log(data);
+          })
+        const socketBody = {
+          id_user: props.user.id_user,
+          username: props.user.username,
+          message: message,
+          time: new Date().toLocaleString('en-GB')
+        };
+        props.socket.emit("new message", socketBody);
+        setMessage("");
+      } else {
+        setIsMessageValid(false);
+        setTimeout( () => setIsMessageValid(true), 1000);
+      }
   }
   return(
     <div className="message-area__input">
@@ -35,6 +45,8 @@ function MessageInputBox(props: any) {
         variant="outlined"
         value={message}
         onChange={(e)=>setMessage(e.target.value)}
+        error={!isMessageValid}
+        helperText={ isMessageValid ? "" : "Message too long!" }
       />
       <IconButton onClick={handleButton} >
         <SendIcon />
