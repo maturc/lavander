@@ -138,4 +138,9 @@
 .grid-height {
   height: 100vh;
 }
+
+.embed {
+  max-width: 200px;
+  max-height: 200px;
+}
 /*# sourceMappingURL=main.css.map */

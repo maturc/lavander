@@ -22,6 +22,9 @@ function Message(props: any) {
         <span className="message-area__message">
           {message}
         </span>
+        <span>
+          {props.embeds}
+        </span>
       </div>
     </div>
   );
