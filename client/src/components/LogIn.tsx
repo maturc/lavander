@@ -26,6 +26,19 @@ function LogIn(props: any) {
         }
       });
   }
+  function handleGuestButton() {
+    const body = JSON.stringify({
+      email: "guest",
+      password: "guest"
+    });
+    fetchInterface("/users/login", "post", body)
+      .then((data)=> {
+        console.log(data);
+        if(data) {
+          props.setUser(data);
+        }
+      });
+  }
   return(
     <Grid container justify="center">
       <Grid className={classes.gridHeight} xs={12} sm={6} container item direction="column" justify="center">
@@ -33,6 +46,7 @@ function LogIn(props: any) {
         <TextField value={password} onChange={(e)=>setPassword(e.target.value)} label="Password" />
         <Button onClick={handleButton}>Log in</Button>
         <Button onClick={() => props.setSignup(true) }>Create a new account</Button>
+        <Button onClick={handleGuestButton}>Log in as GUEST</Button>
       </Grid>
     </Grid>
   );
