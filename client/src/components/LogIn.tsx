@@ -43,7 +43,7 @@ function LogIn(props: any) {
           props.setUser(data);
         }
       })
-      .then( (err) => {
+      .catch( (err) => {
         alert("ERROR 404: Server Not Found");
       })
   }
