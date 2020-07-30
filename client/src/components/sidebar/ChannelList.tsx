@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useChannels, { IUser } from '../custom_hooks/useChannels';
-import { List, ListItem } from '@material-ui/core';
+import { List, ListItem, LinearProgress } from '@material-ui/core';
 
 function ChannelList({ user, activeChannel, setActiveChannel }:IProps) {
   const channels: any = useChannels(user);
@@ -22,8 +22,8 @@ function ChannelList({ user, activeChannel, setActiveChannel }:IProps) {
     ));
   }, [channels, activeChannel, setActiveChannel]);
   return(
-      <List>
-        { channels.length>0 ? channelList : "loading" }
+      <List className="sidebar__list">
+        { channels.length>0 ? channelList : <LinearProgress /> }
       </List>
   );
 }
