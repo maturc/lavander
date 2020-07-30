@@ -5,7 +5,7 @@ import SidebarHeader from './SidebarHeader';
 
 function Sidebar(props: any) {
   return (
-    <Grid item xs={12} sm={1} container direction="column" className="sidebar">
+    <Grid item xs={12} xl={1} lg={2} md={2} sm={3} container direction="column" className="sidebar">
       <Grid item>
         <SidebarHeader />
       </Grid>
@@ -15,9 +15,6 @@ function Sidebar(props: any) {
           activeChannel={props.activeChannel}
           setActiveChannel={props.setActiveChannel}
         />
-      </Grid>
-      <Grid item>
-        Invite
       </Grid>
     </Grid>
   );

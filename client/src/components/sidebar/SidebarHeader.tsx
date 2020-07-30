@@ -1,12 +1,14 @@
 import React from 'react';
-import { Box } from '@material-ui/core';
 
 function SidebarHeader() {
-    return(
-        <Box m={1}>
-            Header
-        </Box>
-    );
+  {/* <h3 className="sidebar__header">
+    Header
+  </h3> */}
+  return(
+    <h3 className="sidebar__header">
+      <img src='./logo.png' className="sidebar__logo" />Lavander
+  </h3>
+  );
 }
 
 export default SidebarHeader;
