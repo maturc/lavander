@@ -42,7 +42,10 @@ function LogIn(props: any) {
         if(data) {
           props.setUser(data);
         }
-      });
+      })
+      .then( (err) => {
+        alert("ERROR 404: Server Not Found");
+      })
   }
   return(
     <Grid container justify="center">

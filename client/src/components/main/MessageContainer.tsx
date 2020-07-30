@@ -22,7 +22,11 @@ function MessageContainer(props: any) {
           ));
           messagesEnd.current.scrollIntoView({ behavior: "auto" });
         }
-      });
+      })
+      .catch( (err) => {
+        console.log(err);
+        setMessageList(<h1 className="error-404">ERROR 404: Server Not Found</h1>);
+      })
   }, [props.activeChannel]);
   useEffect(() => {
     props.socket.on('new message', (data: any) => {
