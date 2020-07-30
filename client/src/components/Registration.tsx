@@ -14,12 +14,14 @@ function Registration(props: any) {
   const [username, setUsername] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [avatar, setAvatar] = useState<string>("");
   
   function handleButton() {
     const body = JSON.stringify({
       username: username,
       email: email,
-      password: password
+      password: password,
+      avatar: avatar
     });
     fetchInterface("/users/signup", "post", body)
       .then((data)=> {
@@ -32,6 +34,7 @@ function Registration(props: any) {
         <TextField value={username} onChange={(e)=>setUsername (e.target.value)} label="Username"/>
         <TextField value={email}    onChange={(e)=>setEmail    (e.target.value)} label="Email address"/>
         <TextField value={password} onChange={(e)=>setPassword (e.target.value)} label="Password" />
+        <TextField value={avatar}   onChange={(e)=>setAvatar   (e.target.value)} label="Avatar url" helperText="Avatar is optional"/>
         <Button onClick={handleButton}>Sign Up</Button> {/* NEEEEEEDS FEEDBACK, was the signup completed??? was it succesfull?? */}
         <Button onClick={() => props.setSignup(false) }>Go back to log in</Button>
       </Grid>

@@ -29,7 +29,7 @@ router.route('/signup').post( async (req: Request, res: Response) => {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     console.log(hashedPassword);
-    const user = { username: req.body.username, email: req.body.email, password: hashedPassword };
+    const user = { username: req.body.username, email: req.body.email, password: hashedPassword, avatar: req.body.avatar };
     database.signUp(user);
     res.status(201).send();
   } catch {
