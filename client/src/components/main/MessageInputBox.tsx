@@ -11,7 +11,7 @@ function MessageInputBox(props: any) {
 
   function handleButton() {
     if (message.length > 0)
-      if (message.length < 201) {
+      if (message.length < 251) {
         const body = JSON.stringify({
           id_user: props.user.id_user,
           id_channel: props.activeChannel.id_channel,
