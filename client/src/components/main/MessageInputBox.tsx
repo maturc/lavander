@@ -8,7 +8,7 @@ function MessageInputBox(props: any) {
   const [isMessageValid, setIsMessageValid] = useState<boolean>(true);
 
   function handleButton() {
-    if (message.length > 0)
+    if (message.length > 0) //don't want a warning for length 0
       if (message.length < 251) {
         const body = JSON.stringify({
           id_user: props.user.id_user,
