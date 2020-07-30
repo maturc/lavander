@@ -9,7 +9,7 @@ function Message(props: any) {
   }, [time, setTimestamp]);
   return(
     <div className="message-area__avatar-container">
-      <img className="message-area__avatar" src={avatar || "./logo.png"}/>
+      <img className="message-area__avatar" alt="" src={avatar || "./logo.png"}/>
       <div className="message-area__message-container">
         <h2>
           <span className="message-area__username">

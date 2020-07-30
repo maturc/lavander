@@ -7,8 +7,6 @@ function MessageInputBox(props: any) {
   const [message, setMessage] = useState<string>("");
   const [isMessageValid, setIsMessageValid] = useState<boolean>(true);
 
-  const err = `error helperText="Message too long!"`
-
   function handleButton() {
     if (message.length > 0)
       if (message.length < 251) {
