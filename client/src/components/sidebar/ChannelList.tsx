@@ -29,8 +29,6 @@ function ChannelList({ user, activeChannel, setActiveChannel }:IProps) {
 }
 
 export default ChannelList;
-//add spinner on load
-//fix the types !!!!!!
 
 interface IProps {
   user: IUser,
