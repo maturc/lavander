@@ -17,15 +17,13 @@ function MessageContainer(props: any) {
         if(data) {
           setMessageList(data.map( (message: any) => {
             const embeds = message.message.match( /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g );
-            let embedList;
-            if( embeds )
-              embedList = embeds.map( (embed: string) => <img key={uniqid()} src={embed} alt="" className="embed" /> );
             return (<ListItem key={uniqid()}>
-                <Message message={message} embeds={embedList} />
+                <Message message={message} embeds={embeds} />
               </ListItem>);
           }
           ));
           messagesEnd.current.scrollIntoView({ behavior: "auto" });
+          setTimeout(()=>messagesEnd.current.scrollIntoView({ behavior: "auto" }), 500);
         }
       })
       .catch( (err) => {
@@ -37,17 +35,16 @@ function MessageContainer(props: any) {
     props.socket.on('new message', (data: any) => {
       console.log('new message posted:', data);
       const embeds = data.message.match( /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g );
-      let embedList;
-      if( embeds )
-        embedList = embeds.map( (embed: string) => <img key={uniqid()} src={embed} alt="" className="embed" /> );
       setMessageList(
         [ ...messageList,
           <ListItem key={uniqid()}>
-            <Message message={data} embeds={embedList} />
+            <Message message={data} embeds={embeds} />
           </ListItem>
         ]);
     });
+    //scroll logic could use some work, it doesn't look nice when there are a lot of images
     messagesEnd.current.scrollIntoView({ behavior: "smooth" });
+    setTimeout(()=>messagesEnd.current.scrollIntoView({ behavior: "smooth" }), 100)
     return ()=> props.socket.off('new message');
   }, [messageList]);
 
