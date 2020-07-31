@@ -32,6 +32,10 @@ function MessageInputBox(props: any) {
         setTimeout( () => setIsMessageValid(true), 1000);
       }
   }
+  function handleKeyPess( e: any ){
+    if(e.key === "Enter")
+      handleButton();
+  }
   return(
     <div className="message-area__input">
       <TextField
@@ -43,8 +47,10 @@ function MessageInputBox(props: any) {
         variant="outlined"
         value={message}
         onChange={(e)=>setMessage(e.target.value)}
+        onKeyPress={(e)=>handleKeyPess(e)}
         error={!isMessageValid}
         helperText={ isMessageValid ? "" : "Message too long!" }
+        autoFocus={true}
       />
       <IconButton onClick={handleButton} className="icon__send">
         <SendIcon />
