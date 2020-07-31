@@ -46,7 +46,7 @@ function MessageInputBox(props: any) {
         error={!isMessageValid}
         helperText={ isMessageValid ? "" : "Message too long!" }
       />
-      <IconButton onClick={handleButton} >
+      <IconButton onClick={handleButton} className="icon__send">
         <SendIcon />
       </IconButton>
     </div>
