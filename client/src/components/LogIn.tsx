@@ -48,7 +48,7 @@ function LogIn(props: any) {
       <Grid className="grid-height" xs={12} sm={6} container item direction="column" justify="center">
         <TextField value={email}    onChange={(e)=>setEmail   (e.target.value)} onKeyPress={(e)=>handleKeyPess(e)} label="Email address" error={!isLoginValid} autoFocus={true}/>
         <TextField value={password} onChange={(e)=>setPassword(e.target.value)} onKeyPress={(e)=>handleKeyPess(e)} label="Password"      error={!isLoginValid} helperText={ isLoginValid ? "" : "Invalid credentials!" } />
-        <Button type="submit" onClick={handleLoginButton} >Log in</Button>
+        <Button onClick={handleLoginButton} >Log in</Button>
         <Button onClick={() => props.setSignup(true) }>Create a new account</Button>
         <Button onClick={handleGuestButton}>Log in as GUEST</Button>
       </Grid>
