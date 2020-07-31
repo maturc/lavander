@@ -26,7 +26,7 @@ function Message(props: any) {
   const [embedList, setEmbedList] = useState([]);
   useEffect(() => {
     if( props.embeds )
-      setEmbedList(props.embeds.map( (embed: string) => <Button key={uniqid()} onClick={()=>handleToggle(embed)}><img src={embed} alt="" className="embed" /></Button> ));
+      setEmbedList(props.embeds.map( (embed: string) => <Button key={uniqid()} onClick={()=>handleToggle(embed)} disableRipple={true}><img src={embed} alt="" className="embed" /></Button> ));
   }, [props.embeds]);
 
   
