@@ -1,12 +1,12 @@
-import React, { useEffect, useState, useRef, RefObject } from 'react';
+import React, { useEffect, useState, useRef, RefObject, CSSProperties } from 'react';
 import Message from './Message';
 import uniqid from 'uniqid'
 import fetchInterface from '../custom_hooks/fetchInterface';
-import { ListItem, List } from '@material-ui/core';
-
+import { ListItem, List, LinearProgress } from '@material-ui/core';
 
 function MessageContainer(props: any) {
   const [messageList, setMessageList] = useState<any>();
+  const [visibility, setVisibility] = useState<CSSProperties>( {visibility: "hidden"});
 
   const messagesEnd: RefObject<any> = useRef<HTMLDivElement>(null);
 
@@ -23,13 +23,17 @@ function MessageContainer(props: any) {
           }
           ));
           messagesEnd.current.scrollIntoView({ behavior: "auto" });
-          setTimeout(()=>messagesEnd.current.scrollIntoView({ behavior: "auto" }), 500);
+          setTimeout(()=> {
+            setVisibility({visibility: "visible"});
+            messagesEnd.current.scrollIntoView({ behavior: "auto" });
+          }, 500);
         }
       })
       .catch( (err) => {
         console.log(err);
         setMessageList(<h1 className="error-404">ERROR 404: Server Not Found</h1>);
       })
+    return () => setVisibility({visibility: "hidden"});
   }, [props.activeChannel]);
   useEffect(() => {
     props.socket.on('new message', (data: any) => {
@@ -47,13 +51,15 @@ function MessageContainer(props: any) {
     setTimeout(()=>messagesEnd.current.scrollIntoView({ behavior: "smooth" }), 100)
     return ()=> props.socket.off('new message');
   }, [messageList]);
-
   return(
-    <List className="message-area__container">
+    <>
+      { visibility.visibility==="hidden" && <LinearProgress className="message-area__spinner" /> }
+      <List className="message-area__container" style={visibility}>
         {messageList}
         <div ref={messagesEnd}>
         </div>
-    </List>
+      </List>
+    </>
   );
 }
 
