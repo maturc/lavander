@@ -26,10 +26,11 @@ function Registration(props: any) {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(adress).toLowerCase());
   } */
-  useIsVarcharValidation( username, setIsUsernameValid );
-  useIsVarcharValidation( password, setIsPasswordValid, 4 );
-  useIsVarcharValidation( avatar,   setIsAvatarValid, 0, 200 );
-  useEmailValidation    ( email,    setIsEmailValid );
+  const [forceValidation, toggleForceValidation] = useState(false);
+  useIsVarcharValidation( username, setIsUsernameValid, forceValidation);
+  useIsVarcharValidation( password, setIsPasswordValid, forceValidation, 4 );
+  useIsVarcharValidation( avatar,   setIsAvatarValid, forceValidation, 0, 200 );
+  useEmailValidation    ( email,    setIsEmailValid, forceValidation );
   /* useEffect(() => {
     if(!isInitialRender)
       isVarcharValid( username, setIsUsernameValid );
@@ -53,7 +54,7 @@ function Registration(props: any) {
     setIsInitialRender(false);
   }, []); */
   function handleButton() {
-    if(isUsernameValid && isEmailValid && isPasswordValid && isAvatarValid && (username || email || password)) {
+    if(isUsernameValid && isEmailValid && isPasswordValid && isAvatarValid && username && email && password) {
       const body = JSON.stringify({
         username: username,
         email: email,
@@ -68,18 +69,23 @@ function Registration(props: any) {
           alert( "Could not sign up!" );
         });
     } else {
-        setIsUsernameValid( false );
+        toggleForceValidation((prev)=>!prev);
+        /* setIsUsernameValid( false );
         setIsEmailValid   ( false );
-        setIsPasswordValid( false );
+        setIsPasswordValid( false ); */
     }
+  }
+  function handleKeyPess( e: any ){
+    if(e.key === "Enter")
+      handleButton();
   }
   return(
     <Grid container justify="center">
       <Grid className="grid-height" xs={12} sm={6} container item direction="column" justify="center">
-        <TextField value={username} onChange={(e)=>setUsername (e.target.value)} label="Username"      error={!isUsernameValid} required={true} />
-        <TextField value={email}    onChange={(e)=>setEmail    (e.target.value)} label="Email address" error={!isEmailValid}    required={true} />
-        <TextField value={password} onChange={(e)=>setPassword (e.target.value)} label="Password"      error={!isPasswordValid} required={true} />
-        <TextField value={avatar}   onChange={(e)=>setAvatar   (e.target.value)} label="Avatar url"    error={!isAvatarValid}   helperText="Optional"/>
+        <TextField value={username} onChange={(e)=>setUsername (e.target.value)} onKeyPress={(e)=>handleKeyPess(e)} label="Username"      error={!isUsernameValid} required={true} autoFocus={true} />
+        <TextField value={email}    onChange={(e)=>setEmail    (e.target.value)} onKeyPress={(e)=>handleKeyPess(e)} label="Email address" error={!isEmailValid}    required={true} />
+        <TextField value={password} onChange={(e)=>setPassword (e.target.value)} onKeyPress={(e)=>handleKeyPess(e)} label="Password"      error={!isPasswordValid} required={true} />
+        <TextField value={avatar}   onChange={(e)=>setAvatar   (e.target.value)} onKeyPress={(e)=>handleKeyPess(e)} label="Avatar url"    error={!isAvatarValid}   helperText="Optional"/>
         <Button onClick={handleButton}>Sign Up</Button>
         <Button onClick={() => props.setSignup(false) }>Go back to log in</Button>
       </Grid>

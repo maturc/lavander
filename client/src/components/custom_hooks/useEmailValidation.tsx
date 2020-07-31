@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function useEmailValidation( value: string, callback: Function ) {
+export default function useEmailValidation( value: string, callback: Function, update: boolean ) {
   const [isInitialRender, setIsInitialRender] = useState<boolean>(true);
   function validateEmail( adress: string ) {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -12,7 +12,7 @@ export default function useEmailValidation( value: string, callback: Function ) 
         callback( false );
       else
         callback( validateEmail( value ) );
-  }, [value]);
+  }, [value, update]);
   useEffect(() => {
     setIsInitialRender( false );
   }, []);

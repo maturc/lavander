@@ -7,7 +7,7 @@ function LogIn(props: any) {
   const [password, setPassword] = useState<string>("");
   const [isLoginValid, setIsLoginValid] = useState<boolean>(true);
 
-  function handleButton() {
+  function handleLoginButton() {
     const body = JSON.stringify({
       email: email,
       password: password
@@ -39,12 +39,16 @@ function LogIn(props: any) {
         alert("ERROR 404: Server Not Found");
       })
   }
+  function handleKeyPess( e: any ){
+    if(e.key === "Enter")
+      handleLoginButton();
+  }
   return(
     <Grid container justify="center">
       <Grid className="grid-height" xs={12} sm={6} container item direction="column" justify="center">
-        <TextField value={email}    onChange={(e)=>setEmail   (e.target.value)} label="Email address" error={!isLoginValid} />
-        <TextField value={password} onChange={(e)=>setPassword(e.target.value)} label="Password"      error={!isLoginValid} helperText={ isLoginValid ? "" : "Invalid credentials!" } />
-        <Button onClick={handleButton}>Log in</Button>
+        <TextField value={email}    onChange={(e)=>setEmail   (e.target.value)} onKeyPress={(e)=>handleKeyPess(e)} label="Email address" error={!isLoginValid} autoFocus={true}/>
+        <TextField value={password} onChange={(e)=>setPassword(e.target.value)} onKeyPress={(e)=>handleKeyPess(e)} label="Password"      error={!isLoginValid} helperText={ isLoginValid ? "" : "Invalid credentials!" } />
+        <Button type="submit" onClick={handleLoginButton} >Log in</Button>
         <Button onClick={() => props.setSignup(true) }>Create a new account</Button>
         <Button onClick={handleGuestButton}>Log in as GUEST</Button>
       </Grid>
