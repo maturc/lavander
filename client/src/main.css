@@ -166,4 +166,16 @@
   max-width: 90vw;
   max-height: 90vh;
 }
+
+.icon__menu {
+  margin-bottom: 3px;
+  margin-right: 12px;
+}
+
+.icon__menu-exit {
+  color: white;
+  padding: 10px;
+  margin: 6px;
+  float: right;
+}
 /*# sourceMappingURL=main.css.map */
