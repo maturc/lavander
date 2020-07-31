@@ -47,6 +47,7 @@ function Message(props: any) {
           {embedList}
           <Backdrop className="backdrop" open={open} onClick={handleClose}>
             <img key={uniqid()} src={url} alt="" className="embed__backdrop" />
+            <a href={url}>Open image</a>
           </Backdrop>
         </span>
       </div>
