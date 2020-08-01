@@ -16,7 +16,6 @@ function MessageContainer( props: IMessageContainer ) {
       .then( (data)=> {
         if(data) {
           setMessageList( data.map( ( message: IMessage ) => {
-            console.log({message: message})
             const embeds: RegExpMatchArray | null = message.message.match( /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g );
             return (
               <ListItem key={uniqid()}>
@@ -50,7 +49,7 @@ function MessageContainer( props: IMessageContainer ) {
     messagesEnd.current.scrollIntoView( { behavior: "smooth" } );
     setTimeout(()=>messagesEnd.current.scrollIntoView( { behavior: "smooth" }), 100 )
     return ()=> props.socket.off('new message');
-  }, [messageList]);
+  }, [messageList, props.socket]);
   return(
     <>
       { visibility.visibility==="hidden" && <LinearProgress className="message-area__spinner" /> }
