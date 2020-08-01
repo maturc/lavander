@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { TextField, IconButton } from '@material-ui/core';
 import fetchInterface from '../custom_hooks/fetchInterface';
 import SendIcon from '@material-ui/icons/Send';
@@ -51,6 +51,7 @@ function MessageInputBox(props: any) {
         error={!isMessageValid}
         helperText={ isMessageValid ? "" : "Message too long!" }
         autoFocus={true}
+        inputRef={props.msgInputRef}
       />
       <IconButton onClick={handleButton} className="icon__send">
         <SendIcon />

@@ -24,6 +24,7 @@ function Sidebar(props: any) {
                 activeChannel={props.activeChannel}
                 setActiveChannel={props.setActiveChannel}
                 setIsDrawerHidden={props.setIsDrawerHidden}
+                forwardedMsgInputRef={props.forwardedMsgInputRef}
               />
             </Grid>
           </Grid>

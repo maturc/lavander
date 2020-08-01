@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import useChannels, { IUser } from '../custom_hooks/useChannels';
 import { List, ListItem, LinearProgress } from '@material-ui/core';
 
-function ChannelList({ user, activeChannel, setActiveChannel, setIsDrawerHidden }:IProps) {
+function ChannelList({ user, activeChannel, setActiveChannel, setIsDrawerHidden, forwardedMsgInputRef }:IProps) {
   const channels: any = useChannels(user);
   const [channelList, setChannelList] = useState();
 
@@ -10,6 +10,7 @@ function ChannelList({ user, activeChannel, setActiveChannel, setIsDrawerHidden 
   function handleClick(channel: any) {
     setActiveChannel( {id_channel: channel.id_channel, channel_name: channel.channel_name} );
     setIsDrawerHidden( true );
+    forwardedMsgInputRef.current.focus();
   }
 
   useEffect(()=> {
@@ -43,5 +44,6 @@ interface IProps {
     channel_name: string
   }
   setActiveChannel: any,
-  setIsDrawerHidden: any
+  setIsDrawerHidden: any,
+  forwardedMsgInputRef: any
 }

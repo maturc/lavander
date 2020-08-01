@@ -1,3 +1,8 @@
+.chat {
+  height: 100vh;
+  overflow: hidden;
+}
+
 .sidebar {
   background-color: #736CED;
   color: white;

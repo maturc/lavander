@@ -17,7 +17,7 @@ function MessageArea(props: any) {
           {`# ${props.activeChannel.channel_name}`}
         </h3>
         <MessageContainer activeChannel={props.activeChannel} socket={props.socket} />
-        <MessageInputBox user={props.user} activeChannel={props.activeChannel} socket={props.socket} />
+        <MessageInputBox user={props.user} activeChannel={props.activeChannel} socket={props.socket} msgInputRef={props.forwardedMsgInputRef} />
       </Grid>
     </Hidden>
   );
