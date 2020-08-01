@@ -3,9 +3,9 @@ import ChannelList from './ChannelList';
 import { Grid, Hidden, IconButton } from '@material-ui/core';
 import SidebarHeader from './SidebarHeader';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import { ISidebar } from '../../interfaces';
 
-function Sidebar(props: any) {
-  console.log({isDrawerHidden: props.isDrawerHidden})
+function Sidebar( props: ISidebar ) {
   return (
     <>
       <Hidden xsDown={props.isDrawerHidden}>
@@ -20,11 +20,11 @@ function Sidebar(props: any) {
             </Grid>
             <Grid item>
               <ChannelList
-                user={props.user}
-                activeChannel={props.activeChannel}
-                setActiveChannel={props.setActiveChannel}
-                setIsDrawerHidden={props.setIsDrawerHidden}
-                forwardedMsgInputRef={props.forwardedMsgInputRef}
+                user                 = {props.user}
+                activeChannel        = {props.activeChannel}
+                setActiveChannel     = {props.setActiveChannel}
+                setIsDrawerHidden    = {props.setIsDrawerHidden}
+                forwardedMsgInputRef = {props.forwardedMsgInputRef}
               />
             </Grid>
           </Grid>

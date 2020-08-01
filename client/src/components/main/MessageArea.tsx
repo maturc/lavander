@@ -3,8 +3,9 @@ import MessageContainer from './MessageContainer';
 import MessageInputBox from './MessageInputBox';
 import { Grid, Hidden, IconButton } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
+import { IMessageArea } from '../../interfaces';
 
-function MessageArea(props: any) {
+function MessageArea(props: IMessageArea) {
   return (
     <Hidden xsDown={!props.isDrawerHidden}>
       <Grid item xs={12} xl={11} lg={10} md={10} sm={9} container direction="column" className="message-area">

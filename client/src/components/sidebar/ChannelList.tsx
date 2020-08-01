@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import useChannels, { IUser } from '../custom_hooks/useChannels';
+import useChannels from '../custom_hooks/useChannels';
 import { List, ListItem, LinearProgress } from '@material-ui/core';
+import { IChannelList, IChannel } from '../../interfaces';
 
-function ChannelList({ user, activeChannel, setActiveChannel, setIsDrawerHidden, forwardedMsgInputRef }:IProps) {
-  const channels: any = useChannels(user);
-  const [channelList, setChannelList] = useState();
+function ChannelList({ user, activeChannel, setActiveChannel, setIsDrawerHidden, forwardedMsgInputRef }: IChannelList) {
+  const [channelList, setChannelList] = useState<Array<React.EmbedHTMLAttributes<HTMLElement>>>();
+  
+  const channels: Array<object> = useChannels(user);
 
-
-  function handleClick(channel: any) {
+  function handleClick( channel: IChannel ): void {
     setActiveChannel( {id_channel: channel.id_channel, channel_name: channel.channel_name} );
     setIsDrawerHidden( true );
-    forwardedMsgInputRef.current.focus();
+    if( forwardedMsgInputRef.current instanceof HTMLElement )
+      forwardedMsgInputRef.current.focus();
   }
 
   useEffect(()=> {
-    setChannelList(channels.map( (channel: any) =>
+    setChannelList( channels.map( (channel: any) =>
       <ListItem
-        button 
+        button
         disableRipple={true}
         className={"sidebar__list-item"}
         component="a"
@@ -24,26 +26,15 @@ function ChannelList({ user, activeChannel, setActiveChannel, setIsDrawerHidden,
         onClick={ () => handleClick(channel)}
         selected={ activeChannel.id_channel === channel.id_channel }
         >
-        {"# "+channel.channel_name}
+          {"# "+channel.channel_name}
       </ListItem>
     ));
   }, [channels, activeChannel, setActiveChannel]);
   return(
       <List className="sidebar__list">
-        { channels.length>0 ? channelList : <LinearProgress /> }
+        { channels.length > 0 ? channelList : <LinearProgress /> }
       </List>
   );
 }
 
 export default ChannelList;
-
-interface IProps {
-  user: IUser,
-  activeChannel: {
-    id_channel: number,
-    channel_name: string
-  }
-  setActiveChannel: any,
-  setIsDrawerHidden: any,
-  forwardedMsgInputRef: any
-}

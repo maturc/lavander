@@ -1,4 +1,4 @@
-export default function timestampParse(time: string) {
+export default function timestampParse( time: string ) {
   let n: any, timestamp: any;
   if(time.length < 21) {
     n = time.match(/\d+/g);

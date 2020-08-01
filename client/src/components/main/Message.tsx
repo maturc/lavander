@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import timestampParse from '../custom_hooks/timestampParse';
 import { Backdrop, Button } from '@material-ui/core';
 import uniqid from 'uniqid'
+import { IMessageComponent } from '../../interfaces';
 const reactStringReplace = require('react-string-replace');
 
-function Message(props: any) {
+function Message(props: IMessageComponent) {
   const {avatar, username, time, message} = props.message;
-  const [timestamp, setTimestamp] = useState();
-  const [url, setUrl] = useState<string>("");
+  const [timestamp, setTimestamp] = useState<string>();
+  const [url,       setUrl      ] = useState<string>("");
 
   useEffect(() => {
     setTimestamp(timestampParse(time));
@@ -16,21 +17,20 @@ function Message(props: any) {
 
   const [open, setOpen] = useState(false);
   const handleClose = () => {
-    setOpen(false);
+    setOpen( false );
   };
-  const handleToggle = (emb:string) => {
-    setUrl(emb)
-    setOpen(!open);
+  const handleToggle = ( emb: string ) => {
+    setUrl( emb );
+    setOpen( !open );
   };
   
-  const [embedList, setEmbedList] = useState([]);
+  const [embedList, setEmbedList] = useState<Array<JSX.Element>>([]);
   useEffect(() => {
     if( props.embeds )
-      setEmbedList(props.embeds.map( (embed: string) => <Button key={uniqid()} onClick={()=>handleToggle(embed)} disableRipple={true}><img src={embed} alt="" className="embed" /></Button> ));
+      setEmbedList( props.embeds.map( ( embed: string ) => <Button key={uniqid()} onClick={()=>handleToggle(embed)} disableRipple={true}><img src={embed} alt="" className="embed" /></Button> ));
   }, [props.embeds]);
-
   
-  const parsedMessage = reactStringReplace(message, /(https?:\/\/\S+)/g, (match:any, i:any) => (
+  const parsedMessage = reactStringReplace( message, /(https?:\/\/\S+)/g, ( match:any, i:any ) => (
     <a key={match + i} href={match}>{match}</a>
   ));
 
