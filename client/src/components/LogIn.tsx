@@ -37,7 +37,7 @@ function LogIn(props: ILoginProps) {
         alert( "ERROR 404: Server Not Found" );
       })
   }
-  function handleKeyPess( e: any ){
+  function handleKeyPess( e: React.KeyboardEvent<HTMLDivElement> ){
     if( e.key === "Enter" )
       handleLoginButton();
   }

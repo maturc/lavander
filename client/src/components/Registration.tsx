@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import fetchInterface from './custom_hooks/fetchInterface';
-import { Grid, TextField, Button } from '@material-ui/core';
+import { Grid, TextField, Button, Snackbar } from '@material-ui/core';
+import MuiAlert from '@material-ui/lab/Alert';
 import useIsVarcharValidation from './custom_hooks/useIsVarcharValidation';
 import useEmailValidation from './custom_hooks/useEmailValidation';
 import { IRegistrationProps } from '../interfaces';
@@ -31,8 +32,12 @@ function Registration( props: IRegistrationProps ) {
         avatar: avatar
       });
       fetchInterface( "/users/signup", "post", body )
+        .then( data => {
+          props.setSuccessOpen(true);
+          props.setSignup(false);
+        })
         .catch( err => {
-          alert( "Could not sign up!" );
+          setErrorOpen(true);
         });
     } else {
       toggleForceValidation( prev => !prev );
@@ -44,6 +49,16 @@ function Registration( props: IRegistrationProps ) {
       handleButton();
   }
 
+  const [errorOpen, setErrorOpen] = useState(false);
+  const handleErrorClose = (event: any, reason: any) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setErrorOpen(false);
+  };
+  function Alert(props: any) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+  }
   return(
     <Grid container justify="center">
       <Grid className="grid-height" xs={12} sm={6} container item direction="column" justify="center">
@@ -53,6 +68,11 @@ function Registration( props: IRegistrationProps ) {
         <TextField value={avatar}   onChange={(e)=>setAvatar   (e.target.value)} onKeyPress={(e)=>handleKeyPess(e)} label="Avatar url"    error={!isAvatarValid}   helperText="Optional"/>
         <Button onClick={handleButton}>Sign Up</Button>
         <Button onClick={() => props.setSignup(false) }>Go back to log in</Button>
+        <Snackbar open={errorOpen} autoHideDuration={4000} onClose={handleErrorClose}>
+          <Alert onClose={handleErrorClose} severity="error">
+            Could not sign up!
+          </Alert>
+        </Snackbar>
       </Grid>
     </Grid>
   );

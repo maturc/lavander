@@ -2,6 +2,7 @@ import { ReactFragment, RefAttributes, RefObject } from "react"
 
 export type IRegistrationProps = {
   setSignup: React.Dispatch<React.SetStateAction<boolean>>;
+  setSuccessOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 export type ILoginProps = {
   setUser: React.Dispatch<React.SetStateAction<IUser | undefined>>;
