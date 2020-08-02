@@ -188,4 +188,44 @@
   height: 40px;
   width: 40px;
 }
+
+.landing {
+  background-color: #FEF9FF;
+}
+
+.landing__container-main {
+  margin: 0 auto;
+}
+
+.landing__logo {
+  max-height: 14rem;
+  padding-right: 2px;
+}
+
+.landing__header {
+  padding: 3px 0 0 8px;
+  margin: 100px 0 50px 0;
+  color: #736CED;
+  text-shadow: 3px 2px 2px #D4C1EC;
+  font-size: 10rem;
+  display: inline-block;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.landing__section {
+  margin: 0 auto;
+}
+
+.landing__section:last-of-type {
+  margin-bottom: 50px;
+}
+
+.img-div {
+  height: 200px;
+  width: 200px;
+  background-color: lightblue;
+}
 /*# sourceMappingURL=main.css.map */
