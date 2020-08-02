@@ -52,7 +52,7 @@ function MessageContainer( props: IMessageContainer ) {
     messagesEnd.current.scrollIntoView( { behavior: "smooth" } );
     setTimeout(()=>messagesEnd.current.scrollIntoView( { behavior: "smooth" }), 100 )
     return ()=> props.socket.off('new message');
-  }, [messageList, props.socket]);
+  }, [messageList, props.socket, props.activeChannel]);
   return(
     <>
       { visibility.visibility==="hidden" && <LinearProgress className="message-area__spinner" /> }

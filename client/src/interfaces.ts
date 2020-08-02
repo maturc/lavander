@@ -54,7 +54,8 @@ export type IMessageComponent = {
 
 export type IUser = {
   id_user: number,
-  username: string
+  username: string,
+  avatar: string
 }
 export type IChannel = {
   id_channel: number;
@@ -68,6 +69,7 @@ export type IMessage = {
 ​​  time: string;
 ​​  username: string;
 }
+export type ISocket = IMessage & { id_channel: number }
 /* type ISetActiveChannel = React.Dispatch<React.SetStateAction<{
   id_channel: number;
   channel_name: string;
