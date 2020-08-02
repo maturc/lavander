@@ -22,7 +22,8 @@ function MessageInputBox( props: IMessageInputBox ) {
           id_user: props.user.id_user,
           username: props.user.username,
           message: message,
-          time: new Date().toLocaleString('en-GB')
+          time: new Date().toLocaleString('en-GB'),
+          id_channel: props.activeChannel.id_channel
         };
         if (props.socket)
           props.socket.emit( "new message", socketBody );

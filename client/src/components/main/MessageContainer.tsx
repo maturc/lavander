@@ -3,7 +3,7 @@ import Message from './Message';
 import uniqid from 'uniqid'
 import fetchInterface from '../custom_hooks/fetchInterface';
 import { ListItem, List, LinearProgress } from '@material-ui/core';
-import { IMessageContainer, IMessage } from '../../interfaces';
+import { IMessageContainer, IMessage, ISocket } from '../../interfaces';
 
 function MessageContainer( props: IMessageContainer ) {
   const [messageList, setMessageList] = useState<any>();
@@ -37,14 +37,17 @@ function MessageContainer( props: IMessageContainer ) {
     return () => setVisibility( {visibility: "hidden"} );
   }, [props.activeChannel]);
   useEffect(() => {
-    props.socket.on( 'new message', (data: IMessage) => {
-      const embeds: RegExpMatchArray | null = data.message.match( /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|jpeg|gif|png)/g );
-      setMessageList(
-        [ ...messageList,
-          <ListItem key={uniqid()}>
-            <Message message={data} embeds={embeds} />
-          </ListItem>
-        ]);
+    props.socket.on( 'new message', (data: ISocket) => {
+      let embeds: RegExpMatchArray | null;
+      if( data.id_channel === props.activeChannel.id_channel ) {
+        embeds = data.message.match( /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|jpeg|gif|png)/g );
+        setMessageList(
+          [ ...messageList,
+            <ListItem key={uniqid()}>
+              <Message message={data} embeds={embeds} />
+            </ListItem>
+          ]);
+      }
     });
     messagesEnd.current.scrollIntoView( { behavior: "smooth" } );
     setTimeout(()=>messagesEnd.current.scrollIntoView( { behavior: "smooth" }), 100 )
