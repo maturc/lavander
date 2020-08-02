@@ -8,6 +8,9 @@ export default function useChannels( user: IUser ) {
     fetchInterface( `/channels`, "get" )
       .then( data => {
         setChannels(data);
+      })
+      .catch( err => {
+        console.log("Could not fetch channels.")
       });
     }, [user]);
   return channels;

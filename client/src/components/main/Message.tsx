@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import timestampParse from '../custom_hooks/timestampParse';
 import { Backdrop, Button } from '@material-ui/core';
 import uniqid from 'uniqid'
@@ -19,16 +19,16 @@ function Message(props: IMessageComponent) {
   const handleClose = () => {
     setOpen( false );
   };
-  const handleToggle = ( emb: string ) => {
+  const handleToggle = useCallback(( emb: string ) => {
     setUrl( emb );
     setOpen( !open );
-  };
-  
+  }, [setUrl, setOpen, open]);
+
   const [embedList, setEmbedList] = useState<Array<JSX.Element>>([]);
   useEffect(() => {
     if( props.embeds )
       setEmbedList( props.embeds.map( ( embed: string ) => <Button key={uniqid()} onClick={()=>handleToggle(embed)} disableRipple={true}><img src={embed} alt="" className="embed" /></Button> ));
-  }, [props.embeds]);
+  }, [props.embeds, handleToggle]);
   
   const parsedMessage = reactStringReplace( message, /(https?:\/\/\S+)/g, ( match:any, i:any ) => (
     <a key={match + i} href={match}>{match}</a>

@@ -17,7 +17,6 @@ function ChannelList({ user, activeChannel, setActiveChannel, setIsDrawerHidden,
   );
 
   useEffect(()=> {
-    console.log("times!!!!")
     setChannelList( channels.map( (channel: any) =>
       <ListItem
         button

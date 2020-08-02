@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { TextField, IconButton } from '@material-ui/core';
 import fetchInterface from '../custom_hooks/fetchInterface';
 import SendIcon from '@material-ui/icons/Send';
@@ -17,6 +17,7 @@ function MessageInputBox( props: IMessageInputBox ) {
           message: message
         });
         fetchInterface( `/channels/messages/new`, "post", body )
+          .catch( err => {});
         const socketBody: object = {
           id_user: props.user.id_user,
           username: props.user.username,
