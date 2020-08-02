@@ -78,6 +78,8 @@
   height: 50px;
   border-radius: 50%;
   margin-right: 8px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .message-area__container {
