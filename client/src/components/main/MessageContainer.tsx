@@ -38,7 +38,7 @@ function MessageContainer( props: IMessageContainer ) {
   }, [props.activeChannel]);
   useEffect(() => {
     props.socket.on( 'new message', (data: IMessage) => {
-      const embeds: RegExpMatchArray | null = data.message.match( /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g );
+      const embeds: RegExpMatchArray | null = data.message.match( /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|jpeg|gif|png)/g );
       setMessageList(
         [ ...messageList,
           <ListItem key={uniqid()}>
