@@ -5,7 +5,7 @@ import MessageArea from './main/MessageArea';
 import { IChatProps } from '../interfaces';
 
 function Chat( props: IChatProps ) {
-  const [activeChannel, setActiveChannel  ] = useState({id_channel: 1, channel_name: "Company"});
+  const [activeChannel, setActiveChannel  ] = useState({id_channel: 1, channel_name: "General"});
   const [isDrawerHidden, setIsDrawerHidden] = useState<boolean>(true);
   
   const msgInputRef = useRef<React.MutableRefObject<HTMLInputElement>>(null);
