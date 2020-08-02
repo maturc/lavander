@@ -31,7 +31,9 @@ router.route('/signup').post( async (req: Request, res: Response) => {
     console.log(hashedPassword);
     const user = { username: req.body.username, email: req.body.email, password: hashedPassword, avatar: req.body.avatar };
     database.signUp(user);
-    res.status(201).send();
+    const response = "Success";
+    res.json(response);
+    //res.status(201).send("Sign up successful!");
   } catch {
     res.status(500).send();
   }
@@ -45,7 +47,7 @@ router.route('/login').post( async (req: Request, res: Response) => {
   }
   try {
     if(await bcrypt.compare(req.body.password, user.password)) {
-      const response = { id_user: user.id_user, username: user.username };
+      const response = { id_user: user.id_user, username: user.username, avatar: user.avatar };
       res.json(response);
       //res.status(202).send('Success');
     } else {
