@@ -115,7 +115,8 @@
 
 
 .landing
-  background-color: #FEF9FF
+  background-color: white
+  margin-bottom: 200px
   &__container-main
     margin: 0 auto
   &__logo
@@ -132,10 +133,36 @@
   &__section
     margin: 0 auto
     &-container
-    &:last-of-type
-      margin-bottom: 50px
-
-.img-div
-  height: 200px
-  width: 200px
-  background-color: lightblue
+      position: relative
+      margin: 50px 0
+      &:nth-child(even)
+        background-color: #F6F6F6
+        &:before
+          content: ""
+          position: absolute
+          left: 0
+          top: -40px
+          right: 0
+          background-repeat: repeat
+          height: 40px
+          background-size: 400px 40px //40 40
+          background-image: radial-gradient(ellipse at 200px -10px, transparent 210px, #F6F6F6 13px)
+        &:after
+          content: ""
+          position: absolute
+          left: 0
+          bottom: -40px
+          right: 0
+          background-repeat: repeat
+          height: 40px
+          background-size: 400px 40px //40 40
+          background-image: radial-gradient(ellipse at 200px 50px, transparent 210px, #F6F6F6 13px)
+  &__img
+    max-height: 400px
+    max-width: 600px
+    padding: 28px 40px 28px 20px
+  &__description
+    &-container
+      padding: 0 20px 0 40px
+body
+  background-color: white
