@@ -60,8 +60,12 @@ function Registration( props: IRegistrationProps ) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
   }
   return(
-    <Grid container justify="center">
-      <Grid className="grid-height" xs={12} sm={6} container item direction="column" justify="center">
+    <Grid className="landing" container>
+      <Grid xs={12} sm={9} md={6} className="landing__container-main" container item justify="center" direction="column">
+        <h1 className="landing__header">
+          <img src='./logo.png' alt="logo" className="landing__logo" />
+          Lavander
+        </h1>
         <TextField value={username} onChange={(e)=>setUsername (e.target.value)} onKeyPress={(e)=>handleKeyPess(e)} label="Username"      error={!isUsernameValid} required={true} autoFocus={true} />
         <TextField value={email}    onChange={(e)=>setEmail    (e.target.value)} onKeyPress={(e)=>handleKeyPess(e)} label="Email address" error={!isEmailValid}    required={true} />
         <TextField value={password} onChange={(e)=>setPassword (e.target.value)} onKeyPress={(e)=>handleKeyPess(e)} label="Password"      error={!isPasswordValid} required={true} />
