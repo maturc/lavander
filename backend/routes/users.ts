@@ -4,16 +4,6 @@ import * as database from '../db/databaseInterface';
 
 const router = express.Router();
 
-//get all USERS - delete later, this is just for testing
-router.route('/').get( async (req: Request, res: Response) => {
-  try {
-    const results = await database.findAll("users" );
-    res.json(results);
-  } catch(err) {
-    console.log(err);
-    res.sendStatus(500);
-  }
-});
 //get USER by ID
 router.route('/:id').get( async (req: Request, res: Response) => {
   try {
@@ -28,7 +18,6 @@ router.route('/:id').get( async (req: Request, res: Response) => {
 router.route('/signup').post( async (req: Request, res: Response) => {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    console.log(hashedPassword);
     const user = { username: req.body.username, email: req.body.email, password: hashedPassword, avatar: req.body.avatar };
     database.signUp(user);
     const response = "Success";

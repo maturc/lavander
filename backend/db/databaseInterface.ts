@@ -9,16 +9,6 @@ const pool: Pool = createPool({
   port: 3306
 });
 
-//????
-export function findAll(tableName: string) {
-  return new Promise((resolve, reject) => {
-    const statement = mysql.format(`SELECT * FROM ??`, [tableName]);
-    pool.query(statement, (err, results) => {
-      if (err) return reject(err);
-      return resolve(results);
-    });
-  });
-}
 //generic select query
 export function find(targetField: string = "*", tableName: string, queryField: object, ) {
   return new Promise((resolve, reject) => {
