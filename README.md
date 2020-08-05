@@ -36,5 +36,6 @@ A fullstack chat application
 ##### How to start the backend:
  * Clone this repository
  * use `npm install` to install the dependancies
+ * import the schema ./backend/db/lavander.sql
  * use `npm run dev` to start the server
  * use [http://localhost:5000](http://localhost:5000) to access api endpoints
