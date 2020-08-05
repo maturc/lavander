@@ -1,6 +1,8 @@
 # Lavander
 A fullstack chat application
 
+### Application preview in video form: https://youtu.be/L4NxiTJpHbo
+
 ## Technologies used:
 + react
 + typescript
@@ -21,3 +23,5 @@ A fullstack chat application
 ![image embeding](https://github.com/maturc/lavander/blob/master/preview/embed.jpeg)
 #### Link highlighting
 ![link highlighting](https://github.com/maturc/lavander/blob/master/preview/link-highlighting.png)
+#### Responsive design
+![responsive design](https://github.com/maturc/lavander/blob/master/preview/responsive-design.png)
