@@ -70,8 +70,8 @@ function Registration( props: IRegistrationProps ) {
         <TextField value={email}    onChange={(e)=>setEmail    (e.target.value)} onKeyPress={(e)=>handleKeyPess(e)} label="Email address" error={!isEmailValid}    required={true} />
         <TextField value={password} onChange={(e)=>setPassword (e.target.value)} onKeyPress={(e)=>handleKeyPess(e)} label="Password"      error={!isPasswordValid} required={true} />
         <TextField value={avatar}   onChange={(e)=>setAvatar   (e.target.value)} onKeyPress={(e)=>handleKeyPess(e)} label="Avatar url"    error={!isAvatarValid}   helperText="Optional"/>
-        <Button onClick={handleButton}>Sign Up</Button>
-        <Button onClick={() => props.setSignup(false) }>Go back to log in</Button>
+        <Button className="login-button" variant="contained" color="primary" onClick={handleButton}>Sign Up</Button>
+        <Button className="login-button" variant="contained" color="primary" onClick={() => props.setSignup(false) }>Go back to log in</Button>
         <Snackbar open={errorOpen} autoHideDuration={4000} onClose={handleErrorClose}>
           <Alert onClose={handleErrorClose} severity="error">
             Could not sign up!

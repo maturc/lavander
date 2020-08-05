@@ -398,4 +398,17 @@ body {
         flex-wrap: wrap;
   }
 }
+
+.login-button {
+  background-color: #8383eb;
+  margin-top: 4px;
+}
+
+.login-button:hover {
+  background-color: #6a60e6;
+}
+
+.login-button:first-of-type {
+  margin-top: 8px !important;
+}
 /*# sourceMappingURL=main.css.map */

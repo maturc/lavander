@@ -52,9 +52,9 @@ function LogIn(props: ILoginProps) {
           </h1>
           <TextField value={email}    onChange={(e)=>setEmail   (e.target.value)} onKeyPress={(e)=>handleKeyPess(e)} label="Email address" error={!isLoginValid} autoFocus={true}/>
           <TextField value={password} onChange={(e)=>setPassword(e.target.value)} onKeyPress={(e)=>handleKeyPess(e)} label="Password"      error={!isLoginValid} helperText={ isLoginValid ? "" : "Invalid credentials!" } />
-          <Button onClick={handleLoginButton} >Log in</Button>
-          <Button onClick={() => props.setSignup(true) }>Create a new account</Button>
-          <Button onClick={handleGuestButton}>Log in as GUEST</Button>
+          <Button className="login-button" variant="contained" color="primary" onClick={handleLoginButton} >Log in</Button>
+          <Button className="login-button" variant="contained" color="primary" onClick={() => props.setSignup(true) }>Create a new account</Button>
+          <Button className="login-button" variant="contained" color="primary" onClick={handleGuestButton}>Log in as GUEST</Button>
         </Grid>
       </Grid>
       <Landing />
