@@ -1,6 +1,7 @@
 # Lavander
 A fullstack chat application
 
+## [Link to webapp](https://lavander-chat.herokuapp.com)
 ### Application preview in video form: https://youtu.be/L4NxiTJpHbo
 
 ## Technologies used:
